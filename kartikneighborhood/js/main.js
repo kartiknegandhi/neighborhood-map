@@ -8,17 +8,7 @@ var marker;
 var markers = [];
       
 var locations = [ //storing the detailed info of all the locations whose markers are to be placed
-    {
-        title: 'Mithibai ',
-        location: {
-            lat: 19.1031174,
-            lng: 72.8373278
-        },
-        address: 'North South Road Number 1, Suvarna Nagar, Vile Parle West, Mumbai, Maharashtra 400056, India',
-        phone: "022 4233 9001",
-        url: 'www.mithibai.ac.in/',
-        college: true
-    },
+    
     {
         title: 'Maxus ',
         location: {
@@ -53,6 +43,17 @@ var locations = [ //storing the detailed info of all the locations whose markers
         mall: true
     },
     {
+        title: 'Mithibai ',
+        location: {
+            lat: 19.1031174,
+            lng: 72.8373278
+        },
+        address: 'North South Road Number 1, Suvarna Nagar, Vile Parle West, Mumbai, Maharashtra 400056, India',
+        phone: "022 4233 9001",
+        url: 'www.mithibai.ac.in/',
+        college: true
+    },
+    {
         title: 'Khalsa College ',
         location: {
             lat: 19.025201,
@@ -63,40 +64,6 @@ var locations = [ //storing the detailed info of all the locations whose markers
         url: 'www.gnkhalsa.edu.in/',
         college: true
     },
-    {
-        title: 'Metro ',
-        location: {
-            lat: 18.9430131,
-            lng: 72.8288781
-        },
-        address: 'M.G.Road, Dhobitalao Junction, Mumbai, Maharashtra 400020, India',
-        phone: "080802 11111",
-        url: '-',
-        theatre:true
-    },
-    {
-        title: ' Sterling',
-        location: {
-            lat: 18.9383381,
-            lng: 72.83268180000002
-        },
-        address: '65, Murzban Road, Azad Maidan, Fort, Mumbai, Maharashtra 400001, India',
-        phone: "022 6622 0016",
-        url: '-',
-        theatre:true
-    },
-    {
-        title: 'INOX ',
-        location: {
-            lat:  18.926773,
-            lng: 72.822559
-        },
-        address: 'CR2 Mall, Barrister Rajni Patel Marg, Nariman Point, Mumbai, Maharashtra 400021, India',
-        phone: "22 4062 69 00",
-        url: 'https://www.inoxmovies.com/',
-        theatre:true
-    },
-
     {
         title: 'Narsee Monjee',
         location: {
@@ -140,6 +107,7 @@ var locations = [ //storing the detailed info of all the locations whose markers
         phone: "022 2204 0256",
         url: 'www.jaihindcollege.com/',
         college: true
+     
     },
     {
         title: 'Kishinchand Chellaram',
@@ -151,6 +119,7 @@ var locations = [ //storing the detailed info of all the locations whose markers
         phone: "022 6698 1000",
         url: 'www.kccollege.edu.in/',
         college: true
+        
     },
 
     {
@@ -163,7 +132,42 @@ var locations = [ //storing the detailed info of all the locations whose markers
         phone: "022 6644 9191",
         url: 'https://www.somaiya.edu/kjsce',
         college: true
-    }
+    },
+    {
+        title: 'Metro ',
+        location: {
+            lat: 18.9430131,
+            lng: 72.8288781
+        },
+        address: 'M.G.Road, Dhobitalao Junction, Mumbai, Maharashtra 400020, India',
+        phone: "080802 11111",
+        url: '-',
+        theatre:true
+    },
+    {
+        title: ' Sterling',
+        location: {
+            lat: 18.9383381,
+            lng: 72.83268180000002
+        },
+        address: '65, Murzban Road, Azad Maidan, Fort, Mumbai, Maharashtra 400001, India',
+        phone: "022 6622 0016",
+        url: '-',
+        theatre:true
+    },
+    {
+        title: 'INOX ',
+        location: {
+            lat:  18.926773,
+            lng: 72.822559
+        },
+        address: 'CR2 Mall, Barrister Rajni Patel Marg, Nariman Point, Mumbai, Maharashtra 400021, India',
+        phone: "22 4062 69 00",
+        url: 'https://www.inoxmovies.com/',
+        theatre:true
+    },
+
+    
 ];
 
       function initMap() {
@@ -232,21 +236,54 @@ function animateMarker(marker) {
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
           infowindow.marker = marker;
-          infowindow.setContent('<p><strong>'+ marker.title +'</p></strong>' + '<strong>' + "Address:" + '</strong>' + '<p><em>'+ marker.address + '<p><strong>' + "Contact: " + '</strong></p>' + '<p>' + marker.phone + '</p>' + '</em></p>' + '<p><strong>' + "Website: " + '</strong></p>' + '<a href="' + marker.url +'">'+marker.url);
+          infowindow.setContent('<p><strong>'+ marker.title +'</p></strong>' + '<strong>' + "Address:" + '</strong>' + '<p><em>'+ marker.address + '<p><strong>' + "Contact: " + '</strong></p>' + '<p>' + marker.phone + '</p>' + '</em></p>' + '<p><strong>' + "Website: " + '</strong></p>' + '<a href="' + marker.url +'">'+marker.url+ '<br><p><strong>Wikipedia Article:</strong></p><br><div id="wikipedialink"></div>');
       infowindow.open(map, marker);
           // Make sure the marker property is cleared if the infowindow is closed.
           infowindow.addListener('closeclick', function() {
             infowindow.marker = null;
           });
+           // Open the infowindow on the correct marker
+            infowindow.open(map, marker);
         }
-      }
+      
 
-   
+   //errorhandling for google maps
       function errorHandling() {
     alert("Issue loading the maps");
     $('#map-canvas').html("Please try again later"); 
 }
 
+
+
+
+//loading the 3rd party api Wikipedia api
+ var wiki_url = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
+//ajax request to run the wikipedia api
+        $.ajax({
+            url: wiki_url,
+            dataType: "jsonp",//form of response
+              }).done(function(response) {
+                var article = response[0];
+                console.log(article);
+
+                var url = 'http://en.wikipedia.org/wiki/' + article;
+                console.log(url);
+              $("#wikipedialink").append('<a href="' + url + '">' + article + '</a>');
+
+               clearTimeout(wikiTimedout);
+            }).fail(function(){//if timeout,call for the wikipedia timeout function
+
+              wikiTimedout();
+
+            });
+
+            //error handling for wikipedia resources
+ var wikiTimedout = setTimeout(function() {
+            infowindow.setContent("Failed to load wikipedia resources");
+            infowindow.open(map, marker);
+        }, 3000);
+
+}
 
  function mallselect() {
         for (var i = 0; i < markersArray.length; i++) {//creating a function to filter out malls on click of mall button
@@ -330,7 +367,7 @@ var viewModel = function() {
      this.openInfo = function(thisList) {
         var thisId = this.locationId();
         var newId = thisId.slice(-1);
-        fillInfoWindow(markersArray[newId], infoWindow);
+        populateInfoWindow(markersArray[newId], infoWindow);
     };
 };
     ko.applyBindings(new viewModel());

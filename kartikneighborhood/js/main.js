@@ -5,7 +5,60 @@ var bounds;
 var largeInfowindow;
 var marker;
 // Create a new blank array for all the listing markers.
-var markers = [];
+
+      function initMap() {
+        largeInfowindow = new google.maps.InfoWindow();
+        // Constructor creates a new map - only center and zoom are required.
+        map = new google.maps.Map(document.getElementById('map-canvas'), {
+          center: {lat:  18.8928676, lng: 72.7758729},
+          zoom: 13,
+        scrollwheel: true      
+          });
+        
+
+            // The following group uses the location array to create an array of markers on initialize.
+        for (var i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+        map:map,// Create a marker per location, and put into markers array.
+         title:locations[i].title,
+            position: locations[i].location, // Get the position from the location array.
+           address: locations[i].address,
+           phone: locations[i].phone,
+           url:locations[i].url,
+           animation: google.maps.Animation.DROP,
+         draggable: false
+            });
+
+         
+         
+         
+            locations[i].marker = marker;
+          // Push the marker to our array of markers.
+          markers.push(marker);
+          // Create an onclick event to open an infowindow at each marker.
+          marker.addListener('click', function() {
+            animateMarker(this);
+            populateInfoWindow(this, largeInfowindow);
+          });
+        }
+    //specifing lat lng bounds 
+  bounds = new google.maps.LatLngBounds();
+  //Fits the markers as window resizes
+  google.maps.event.addDomListener(window, 'load', displayMarkerList);
+  google.maps.event.addDomListener(window, 'resize', displayMarkerList);
+
+      
+      //Displays markers on the listed location
+  function displayMarkerList () {
+    
+          for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+            bounds.extend(markers[i].position);
+          }
+      map.fitBounds(bounds);      
+    }   
+  
+}
       
 var locations = [ //storing the detailed info of all the locations whose markers are to be placed
     
@@ -184,59 +237,7 @@ var locations = [ //storing the detailed info of all the locations whose markers
     
 ];
 
-      function initMap() {
-        largeInfowindow = new google.maps.InfoWindow();
-        // Constructor creates a new map - only center and zoom are required.
-        map = new google.maps.Map(document.getElementById('map-canvas'), {
-          center: {lat:  18.8928676, lng: 72.7758729},
-          zoom: 13,
-        scrollwheel: true      
-          });
-        
-
-            // The following group uses the location array to create an array of markers on initialize.
-        for (var i = 0; i < locations.length; i++) {
-        marker = new google.maps.Marker({
-        map:map,// Create a marker per location, and put into markers array.
-         title:locations[i].title,
-            position: locations[i].location, // Get the position from the location array.
-           address: locations[i].address,
-           phone: locations[i].phone,
-           url:locations[i].url,
-           animation: google.maps.Animation.DROP,
-         draggable: false
-            });
-
-         
-         
-         
-            locations[i].marker = marker;
-          // Push the marker to our array of markers.
-          markers.push(marker);
-          // Create an onclick event to open an infowindow at each marker.
-          marker.addListener('click', function() {
-            animateMarker(this);
-            populateInfoWindow(this, largeInfowindow);
-          });
-        }
-    //specifing lat lng bounds 
-  bounds = new google.maps.LatLngBounds();
-  //Fits the markers as window resizes
-  google.maps.event.addDomListener(window, 'load', displayMarkerList);
-  google.maps.event.addDomListener(window, 'resize', displayMarkerList);
-
-      
-      //Displays markers on the listed location
-  function displayMarkerList () {
-    
-          for (var i = 0; i < markers.length; i++) {
-            markers[i].setMap(map);
-            bounds.extend(markers[i].position);
-          }
-      map.fitBounds(bounds);      
-    }   
-  
-}
+var markers = [];
 // Animation for marker
 function animateMarker(marker) {
 
@@ -247,6 +248,7 @@ function animateMarker(marker) {
 }
  // This function populates the infowindow when the marker is clicked.
       function populateInfoWindow(marker, infowindow) {
+        console.log('this');
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
           infowindow.marker = marker;
@@ -259,6 +261,7 @@ function animateMarker(marker) {
           });
            // Open infowindows at respective markers
             infowindow.open(map, marker);
+            console.log('hi');
         }
       
 
@@ -340,7 +343,7 @@ function animateMarker(marker) {
 //ViewModel function     
 var viewModel = function() {
     var self = this;
-    this.locationList = ko.observableArray(locations);
+    self.locationList = ko.observableArray(locations);
     this.filterIndicator = ko.observable("");
     this.filterInfo = ko.observable(false);
     this.displayFilter = ko.observable("options-box");

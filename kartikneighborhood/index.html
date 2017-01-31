@@ -8,17 +8,20 @@
         Neighborhood Map project
     </title>
     <link href="css/style.css" rel="stylesheet">
+<!-- links reffered:https://fonts.google.com/specimen/Open+Sans?selection.family=Open+Sans -->
+
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 
 <body>
 <!-- Google Map -->
  <div id="map-canvas"></div>
-<!-- https://classroom.udacity.com/nanodegrees/nd001/parts/00113454014/modules/4fd8d440-9428-4de7-93c0-4dca17a36700/lessons/8304370457/concepts/83122494460923# -->
-    <div>
+<!--links referred: https://classroom.udacity.com/nanodegrees/nd001/parts/00113454014/modules/4fd8d440-9428-4de7-93c0-4dca17a36700/lessons/8304370457/concepts/83122494460923# -->
        
-        <header>
+    
         <div id ="container">
+
       <div id ="options-box">
             <h3> Top Colleges,Malls and Theatres in Mumbai</h3>
             <div>
@@ -28,6 +31,7 @@
 
           <input id="theatre-listings" type="button" value="theatre" data-bind="click: filtertheatre">
             
+            <input id="all-listings" type="button" value="all" data-bind="click: nofilter">
         </div>
       </div>
 
@@ -37,7 +41,7 @@
  
  <div id="verticallist">
  <ul id="location-list" data-bind= 'foreach: locationList'>
-                <li class="list-items" data-bind= 'text:title', visible: listVisible>
+                <li class="list-items" data-bind="text:title, visible: listVisible">
                 </li>
                 </ul>
                 
@@ -48,8 +52,11 @@
         </div>
    
     <!-- Load script files-->
+
+     <script src="js/knockout-3.4.1.js"></script>
+
     <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/knockout-3.4.1.js"></script>
+   
     <script src="js/main.js"></script>
    
 

@@ -3,14 +3,14 @@
 html {
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
-  background-color: #F321FF;
+  background-color: #993399;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-        .options-box {
-        background: #fff;
+        .container {
+        background: #ffffff;
         border: 1px solid #999;
         border-radius: 3px;
         height: 100%;
@@ -24,9 +24,7 @@ html {
 
 
 }
-img {
-  border-radius: 5px;
-}
+
 
 
 
@@ -34,8 +32,9 @@ h3 {
   text-align: left;
   color: #000000;
   font-weight: 400;
-  background-color: #1a1aff;
-  text-decoration: blink;
+  word-wrap: break-word;
+  
+  flex-wrap: wrap;
 }
 
 
@@ -43,12 +42,12 @@ h3 {
 
 #map-canvas {   
 	left: 30%;
-  height: 100%;
+  height: 70%;
   max-height: 100%; 
+  margin-top: 15%;
   right: 1%;
 	position: absolute;
   overflow: hidden;
-  z-index: 1;
   color: #09c; 
   border-radius: 5px;
 }
@@ -57,8 +56,9 @@ h3 {
   ul {
       font-size: 10px;
   }
-
-  #map-canvas{
-    height: 100%;
+  h3{
+    font-size: 30px;
   }
+
+
   

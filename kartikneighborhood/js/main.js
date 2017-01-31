@@ -18,7 +18,8 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: '150 Feet Road, Maxus Mall Road, Near Railway Flyover, Maxus Mall, Opposite Salasar Bridge Bhoomi, Bhayandar West, Wadi Bandar, Mazgaon, Mumbai, Maharashtra 401101, India',
         phone: "022 2815 2221",
         url: 'www.maxus.com/',
-        mall:true
+        mall:true,
+        listVisible: ko.observable(true)
     },
     {
         title: 'High Street Pheonix ',
@@ -29,7 +30,8 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: '462, Senapati Bapat Marg, Lower Parel, Mumbai, Maharashtra 400013, India',
         phone: "022 4333 9994",
         url: 'www.highstreetphoenix.com/', 
-        mall: true
+        mall: true,
+        listVisible: ko.observable(true)
     },
     {
         title: 'Pheonix Market City ',
@@ -40,7 +42,8 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: 'Lal Bahadur Shastri Marg, Kurla West, Mumbai, Maharashtra 400070, India',
         phone: "022 6180 1100",
         url: 'https://www.phoenixmarketcity.com/mumbai',
-        mall: true
+        mall: true,
+        listVisible: ko.observable(true)
     },
     {
         title: 'Mithibai ',
@@ -51,7 +54,8 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: 'North South Road Number 1, Suvarna Nagar, Vile Parle West, Mumbai, Maharashtra 400056, India',
         phone: "022 4233 9001",
         url: 'www.mithibai.ac.in/',
-        college: true
+        college: true,
+        listVisible: ko.observable(true)
     },
     {
         title: 'Khalsa College ',
@@ -62,7 +66,8 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: 'Nathalal Parekh Marg, Matunga East, Mumbai, Maharashtra 400019, India',
         phone: "022 2409 6234",
         url: 'www.gnkhalsa.edu.in/',
-        college: true
+        college: true,
+        listVisible: ko.observable(true)
     },
     {
         title: 'Narsee Monjee',
@@ -73,7 +78,8 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: 'Bhaktivedanta Swami Marg, Gulmohar Road, Juhu Scheme, Vile Parle West, Mumbai, Maharashtra 400056, India',
         phone: "022 4233 8000",
         url: 'www.nmcollege.in',
-        college:true
+        college:true,
+        listVisible: ko.observable(true)
     },
     {
         title: 'DJ Sanghvi',
@@ -84,7 +90,8 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: 'Plot No.U-15, J.V.P.D. Scheme, Bhaktivedanta Swami Marg, Vile Parle West, Mumbai, Maharashtra 400056, India',
         phone: "94631 58608",
         url: 'www.djsce.ac.in/',
-        college: true
+        college: true,
+        listVisible: ko.observable(true)
     },
     {
         title: 'Hassaram Rijhumal ',
@@ -95,7 +102,8 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: '123, Dinshaw Wachha Road, Churchgate, Mumbai, Maharashtra 400020, India',
         phone: "022 2287 6115",
         url: 'www.hrcollege.edu/',
-        college: true
+        college: true,
+        listVisible: ko.observable(true)
     },
     {
         title: 'Jai Hind',
@@ -106,7 +114,8 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: 'A Road, Churchgate, Mumbai, Maharashtra 400020, India',
         phone: "022 2204 0256",
         url: 'www.jaihindcollege.com/',
-        college: true
+        college: true,
+        listVisible: ko.observable(true)
      
     },
     {
@@ -118,12 +127,13 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: '124, Dinshaw Wachha Road, Vidyasagar Principal K. M. Kundnani Chowk, Churchgate, Mumbai, Maharashtra 400020, India',
         phone: "022 6698 1000",
         url: 'www.kccollege.edu.in/',
-        college: true
+        college: true,
+        listVisible: ko.observable(true)
         
     },
 
     {
-        title: 'KJ Somaiya College Of Engineering',
+        title: 'KJ Somaiya College',
         location: {
             lat: 19.073041,
             lng: 72.899697
@@ -131,7 +141,8 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: 'Vidyanagar, Vidya Vihar East, Vidyavihar, Mumbai, Maharashtra 400077, India',
         phone: "022 6644 9191",
         url: 'https://www.somaiya.edu/kjsce',
-        college: true
+        college: true,
+        listVisible: ko.observable(true)
     },
     {
         title: 'Metro ',
@@ -142,7 +153,8 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: 'M.G.Road, Dhobitalao Junction, Mumbai, Maharashtra 400020, India',
         phone: "080802 11111",
         url: '-',
-        theatre:true
+        theatre:true,
+        listVisible: ko.observable(true)
     },
     {
         title: ' Sterling',
@@ -153,7 +165,8 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: '65, Murzban Road, Azad Maidan, Fort, Mumbai, Maharashtra 400001, India',
         phone: "022 6622 0016",
         url: '-',
-        theatre:true
+        theatre:true,
+        listVisible: ko.observable(true)
     },
     {
         title: 'INOX ',
@@ -164,7 +177,8 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: 'CR2 Mall, Barrister Rajni Patel Marg, Nariman Point, Mumbai, Maharashtra 400021, India',
         phone: "22 4062 69 00",
         url: 'https://www.inoxmovies.com/',
-        theatre:true
+        theatre:true,
+        listVisible: ko.observable(true)
     },
 
     
@@ -237,19 +251,20 @@ function animateMarker(marker) {
         if (infowindow.marker != marker) {
           infowindow.marker = marker;
           infowindow.setContent('<p><strong>'+ marker.title +'</p></strong>' + '<strong>' + "Address:" + '</strong>' + '<p><em>'+ marker.address + '<p><strong>' + "Contact: " + '</strong></p>' + '<p>' + marker.phone + '</p>' + '</em></p>' + '<p><strong>' + "Website: " + '</strong></p>' + '<a href="' + marker.url +'">'+marker.url+ '<br><p><strong>Wikipedia Article:</strong></p><br><div id="wikipedialink"></div>');
+       marker.setAnimation(google.maps.Animation.DROP);
       infowindow.open(map, marker);
           // Make sure the marker property is cleared if the infowindow is closed.
           infowindow.addListener('closeclick', function() {
             infowindow.marker = null;
           });
-           // Open the infowindow on the correct marker
+           // Open infowindows at respective markers
             infowindow.open(map, marker);
         }
       
 
    //errorhandling for google maps
       function errorHandling() {
-    alert("Issue loading the maps");
+    alert("Issue loading google maps");
     $('#map-canvas').html("Please try again later"); 
 }
 
@@ -257,18 +272,22 @@ function animateMarker(marker) {
 
 
 //loading the 3rd party api Wikipedia api
+
+//links reffered:https://www.mediawiki.org/wiki/API:Opensearch
+
+
  var wiki_url = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
 //ajax request to run the wikipedia api
         $.ajax({
             url: wiki_url,
             dataType: "jsonp",//form of response
               }).done(function(response) {
-                var article = response[0];
-                console.log(article);
+                var articlename = response[0];
+                console.log(articlename);
 
-                var url = 'http://en.wikipedia.org/wiki/' + article;
+                var url = 'http://en.wikipedia.org/wiki/' + articlename;
                 console.log(url);
-              $("#wikipedialink").append('<a href="' + url + '">' + article + '</a>');
+              $("#wikipedialink").append('<a href="' + url + '">' + articlename + '</a>');
 
                clearTimeout(wikiTimedout);
             }).fail(function(){//if timeout,call for the wikipedia timeout function
@@ -288,35 +307,36 @@ function animateMarker(marker) {
  function mallselect() {
         for (var i = 0; i < markersArray.length; i++) {//creating a function to filter out malls on click of mall button
             if(markers[i].mall === true) {
-                markersArray[i].setMap(map);
+                markers[i].setVisible(true);
             }
             else {
-                markersArray[i].setMap(null);
+                 markers[i].setVisible(false);
             }
         }
     };
     function collegeselect() {//creating a function to filter out colleges on click of college button
         for (var i = 0; i < markersArray.length; i++) {
             if(markers[i].place === college) {
-                markersArray[i].setMap(map);
+                 markers[i].setVisible(true);
             }
             else {
-                markersArray[i].setMap(null);
+                 markers[i].setVisible(false);
             }
         }
     };
      function theatreselect() { //creating a function to filter out theatres on click of theatre button
         for (var i = 0; i < markersArray.length; i++) {
             if(markers[i].place === theatre) {
-                markersArray[i].setMap(map);
+               markers[i].setVisible(true);
             }
             else {
-                markersArray[i].setMap(null);
+               markers[i].setVisible(false);
             }
         }
     };
+    
 
-
+//ref link 1:1 appointment with Karol Sir
 //ViewModel function     
 var viewModel = function() {
     var self = this;
@@ -328,46 +348,68 @@ var viewModel = function() {
 
 
 
+
+
+
+
+
+
+//ref link : 1:1 appointment with Karol Sir
+    
+
       this.filtermall = function() {   //running a function to filter out malls on click of mall button
         var len = self.locationList().length;
         for (var i = 0; i < len; i++) {
-            if(self.locationList()[i].mall() === true) {
+            if(self.locationList()[i].mall === true) {
                 self.locationList()[i].listVisible(true);
-                mallselect();
+                markers[i].setVisible(true);
             }
             else {
                 self.locationList()[i].listVisible(false);
+                markers[i].setVisible(false);
             }
         }
     };
       this.filtercollege = function() {    //running a function to filter out colleges on click of college button
         var len = self.locationList().length;
         for (var i = 0; i < len; i++) {
-            if(self.locationList()[i].college() === true) {
+            if(self.locationList()[i].college === true) {
                 self.locationList()[i].listVisible(true);
-                collegeselect();
+                markers[i].setVisible(true);
             }
             else {
                 self.locationList()[i].listVisible(false);
+                markers[i].setVisible(false);
             }
         }
     };
       this.filtertheatre = function() {    //running a function to filter out theatres on click of theatre button
         var len = self.locationList().length;
         for (var i = 0; i < len; i++) {
-            if(self.locationList()[i].theatre() === true) {
+            if(self.locationList()[i].theatre === true) {
                 self.locationList()[i].listVisible(true);
-                theatreselect();
+               markers[i].setVisible(true);
             }
             else {
                 self.locationList()[i].listVisible(false);
+                 markers[i].setVisible(false);
             }
         }
     };
-     this.openInfo = function(thisList) {
-        var thisId = this.locationId();
-        var newId = thisId.slice(-1);
-        populateInfoWindow(markersArray[newId], infoWindow);
+    this.nofilter = function() {    //running a function to filter out theatres on click of theatre button
+        var len = self.locationList().length;
+        for (var i = 0; i < len; i++) {
+           {
+                self.locationList()[i].listVisible(true);
+               markers[i].setVisible(true);
+            }
+            
+        } 
     };
+     //this.openInfo = function(thisList) {
+       // var thisId = this.locationId();
+        //var newId = thisId.slice(-1);
+        //populateInfoWindow(markersArray[newId], infoWindow);
+   // };
 };
     ko.applyBindings(new viewModel());

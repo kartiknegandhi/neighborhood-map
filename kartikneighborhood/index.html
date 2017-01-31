@@ -24,6 +24,7 @@
 
       <div id ="options-box">
             <h3> Top Colleges,Malls and Theatres in Mumbai</h3>
+            <hr>
             <div>
           <input id="malls-listings" type="button" value="mall" data-bind="click: filtermall">
 
@@ -37,11 +38,12 @@
 
       
     </header>
-<!-- Location list -->
- 
+<!-- Location list 
+ref link: https://classroom.udacity.com/nanodegrees/nd001/parts/00113454014/modules/271165859175461/lessons/3406489055/concepts/34648186930923#
+-->
  <div id="verticallist">
  <ul id="location-list" data-bind= 'foreach: locationList'>
-                <li class="list-items" data-bind="text:title, visible: listVisible">
+                <li class="list-items" data-bind="text:title, visible: listVisible,click: populateInfoWindow">
                 </li>
                 </ul>
                 

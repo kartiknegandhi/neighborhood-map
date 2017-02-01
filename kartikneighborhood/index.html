@@ -8,64 +8,64 @@
         Neighborhood Map project
     </title>
     <link href="css/style.css" rel="stylesheet">
-<!-- links reffered:https://fonts.google.com/specimen/Open+Sans?selection.family=Open+Sans -->
+    <!-- links reffered:https://fonts.google.com/specimen/Open+Sans?selection.family=Open+Sans -->
 
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 
 <body>
-<!-- Google Map -->
- <div id="map-canvas"></div>
-<!--links referred: https://classroom.udacity.com/nanodegrees/nd001/parts/00113454014/modules/4fd8d440-9428-4de7-93c0-4dca17a36700/lessons/8304370457/concepts/83122494460923# -->
-       
-    
-        <div id ="container">
+    <!-- Google Map -->
+    <div id="map-canvas"></div>
+    <!--links referred: https://classroom.udacity.com/nanodegrees/nd001/parts/00113454014/modules/4fd8d440-9428-4de7-93c0-4dca17a36700/lessons/8304370457/concepts/83122494460923# -->
 
-      <div id ="options-box">
+
+    <div id="container">
+
+        <div id="options-box">
             <h3> Top Colleges,Malls and Theatres in Mumbai</h3>
             <hr>
             <div>
-          <input id="malls-listings" type="button" value="mall" data-bind="click: filtermall">
+                <input id="malls-listings" type="button" value="mall" data-bind="click: filtermall">
 
-          <input id="college-listings" type="button" value="college" data-bind="click: filtercollege">
+                <input id="college-listings" type="button" value="college" data-bind="click: filtercollege">
 
-          <input id="theatre-listings" type="button" value="theatre" data-bind="click: filtertheatre">
-            
-            <input id="all-listings" type="button" value="all" data-bind="click: nofilter">
+                <input id="theatre-listings" type="button" value="theatre" data-bind="click: filtertheatre">
+
+                <input id="all-listings" type="button" value="all" data-bind="click: nofilter">
+            </div>
         </div>
-      </div>
 
-      
-    </header>
-<!-- Location list 
+
+        </header>
+        <!-- Location list 
 ref link: https://classroom.udacity.com/nanodegrees/nd001/parts/00113454014/modules/271165859175461/lessons/3406489055/concepts/34648186930923#
 -->
- <div id="verticallist">
- <ul id="location-list" data-bind= 'foreach: locationList'>
-                <li class="list-items" data-bind="text:title, visible: listVisible,click: populateInfoWindow">
+        <div id="verticallist">
+            <ul id="location-list" data-bind='foreach: locationList'>
+                <li class="list-items" data-bind="text:title, visible: listVisible,click: $parent.onclickInfowindow">
                 </li>
-                </ul>
-                
-					 
-     
+            </ul>
+
+
+
 
 
         </div>
-   
-    <!-- Load script files-->
 
-     <script src="js/knockout-3.4.1.js"></script>
+        <!-- Load script files-->
 
-    <script src="js/jquery-3.1.1.min.js"></script>
-   
-    <script src="js/main.js"></script>
-   
+        <script src="js/knockout-3.4.1.js"></script>
 
-    <!-- Load Google Maps API -->
-    <script async defer 
-    	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0wVQv8rC2l3thvjxP_qJ0C0WDuA34hrM&v=3&callback=initMap" onerror="errorHandling()">
-    </script>
+        <script src="js/jquery-3.1.1.min.js"></script>
+
+        <script src="js/main.js"></script>
+
+
+        <!-- Load Google Maps API -->
+        <!--https://developers.google.com/maps/documentation/javascript/tutorial -->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0wVQv8rC2l3thvjxP_qJ0C0WDuA34hrM&v=3&callback=initMap" onerror="errorHandling()">
+        </script>
 
 </body>
 

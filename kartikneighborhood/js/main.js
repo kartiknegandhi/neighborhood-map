@@ -1,67 +1,68 @@
-
-
 var map;
 var bounds;
 var largeInfowindow;
 var marker;
 // Create a new blank array for all the listing markers.
 
-      function initMap() {
-        largeInfowindow = new google.maps.InfoWindow();
-        // Constructor creates a new map - only center and zoom are required.
-        map = new google.maps.Map(document.getElementById('map-canvas'), {
-          center: {lat:  18.8928676, lng: 72.7758729},
-          zoom: 13,
-        scrollwheel: true      
-          });
-        
+function initMap() {
+    largeInfowindow = new google.maps.InfoWindow();
+    // Constructor creates a new map - only center and zoom are required.
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
+        center: {
+            lat: 18.8928676,
+            lng: 72.7758729
+        },
+        zoom: 13,
+        scrollwheel: true
+    });
 
-            // The following group uses the location array to create an array of markers on initialize.
-        for (var i = 0; i < locations.length; i++) {
+
+    // The following group uses the location array to create an array of markers on initialize.
+    for (var i = 0; i < locations.length; i++) {
         marker = new google.maps.Marker({
-        map:map,// Create a marker per location, and put into markers array.
-         title:locations[i].title,
+            map: map, // Create a marker per location, and put into markers array.
+            title: locations[i].title,
             position: locations[i].location, // Get the position from the location array.
-           address: locations[i].address,
-           phone: locations[i].phone,
-           url:locations[i].url,
-           animation: google.maps.Animation.DROP,
-         draggable: false
-            });
+            address: locations[i].address,
+            phone: locations[i].phone,
+            url: locations[i].url,
+            animation: google.maps.Animation.BOUNCE,
+            draggable: false
+        });
 
-         
-         
-         
-            locations[i].marker = marker;
-          // Push the marker to our array of markers.
-          markers.push(marker);
-          // Create an onclick event to open an infowindow at each marker.
-          marker.addListener('click', function() {
+
+
+
+        locations[i].marker = marker;
+        // Push the marker to our array of markers.
+        markers.push(marker);
+        // Create an onclick event to open an infowindow at each marker.
+        marker.addListener('click', function() {
             animateMarker(this);
             populateInfoWindow(this, largeInfowindow);
-          });
-        }
+        });
+    }
     //specifing lat lng bounds 
-  bounds = new google.maps.LatLngBounds();
-  //Fits the markers as window resizes
-  google.maps.event.addDomListener(window, 'load', displayMarkerList);
-  google.maps.event.addDomListener(window, 'resize', displayMarkerList);
+    bounds = new google.maps.LatLngBounds();
+    //Fits the markers as window resizes
+    google.maps.event.addDomListener(window, 'load', displayMarkerList);
+    google.maps.event.addDomListener(window, 'resize', displayMarkerList);
 
-      
-      //Displays markers on the listed location
-  function displayMarkerList () {
-    
-          for (var i = 0; i < markers.length; i++) {
+
+    //Displays markers on the listed location
+    function displayMarkerList() {
+
+        for (var i = 0; i < markers.length; i++) {
             markers[i].setMap(map);
             bounds.extend(markers[i].position);
-          }
-      map.fitBounds(bounds);      
-    }   
-  
+        }
+        map.fitBounds(bounds);
+    }
+
 }
-      
+
 var locations = [ //storing the detailed info of all the locations whose markers are to be placed
-    
+//https://classroom.udacity.com/nanodegrees/nd001/parts/00113454014/modules/271165859175461/lessons/3406489055/concepts/34648186930923
     {
         title: 'Maxus ',
         location: {
@@ -71,7 +72,7 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: '150 Feet Road, Maxus Mall Road, Near Railway Flyover, Maxus Mall, Opposite Salasar Bridge Bhoomi, Bhayandar West, Wadi Bandar, Mazgaon, Mumbai, Maharashtra 401101, India',
         phone: "022 2815 2221",
         url: 'www.maxus.com/',
-        mall:true,
+        mall: true,
         listVisible: ko.observable(true)
     },
     {
@@ -82,7 +83,7 @@ var locations = [ //storing the detailed info of all the locations whose markers
         },
         address: '462, Senapati Bapat Marg, Lower Parel, Mumbai, Maharashtra 400013, India',
         phone: "022 4333 9994",
-        url: 'www.highstreetphoenix.com/', 
+        url: 'www.highstreetphoenix.com/',
         mall: true,
         listVisible: ko.observable(true)
     },
@@ -131,7 +132,7 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: 'Bhaktivedanta Swami Marg, Gulmohar Road, Juhu Scheme, Vile Parle West, Mumbai, Maharashtra 400056, India',
         phone: "022 4233 8000",
         url: 'www.nmcollege.in',
-        college:true,
+        college: true,
         listVisible: ko.observable(true)
     },
     {
@@ -169,7 +170,7 @@ var locations = [ //storing the detailed info of all the locations whose markers
         url: 'www.jaihindcollege.com/',
         college: true,
         listVisible: ko.observable(true)
-     
+
     },
     {
         title: 'Kishinchand Chellaram',
@@ -182,7 +183,7 @@ var locations = [ //storing the detailed info of all the locations whose markers
         url: 'www.kccollege.edu.in/',
         college: true,
         listVisible: ko.observable(true)
-        
+
     },
 
     {
@@ -206,7 +207,7 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: 'M.G.Road, Dhobitalao Junction, Mumbai, Maharashtra 400020, India',
         phone: "080802 11111",
         url: '-',
-        theatre:true,
+        theatre: true,
         listVisible: ko.observable(true)
     },
     {
@@ -218,201 +219,199 @@ var locations = [ //storing the detailed info of all the locations whose markers
         address: '65, Murzban Road, Azad Maidan, Fort, Mumbai, Maharashtra 400001, India',
         phone: "022 6622 0016",
         url: '-',
-        theatre:true,
+        theatre: true,
         listVisible: ko.observable(true)
     },
     {
         title: 'INOX ',
         location: {
-            lat:  18.926773,
+            lat: 18.926773,
             lng: 72.822559
         },
         address: 'CR2 Mall, Barrister Rajni Patel Marg, Nariman Point, Mumbai, Maharashtra 400021, India',
         phone: "22 4062 69 00",
         url: 'https://www.inoxmovies.com/',
-        theatre:true,
+        theatre: true,
         listVisible: ko.observable(true)
     },
 
-    
+
 ];
 
 var markers = [];
 // Animation for marker
 function animateMarker(marker) {
 
-  marker.setAnimation(google.maps.Animation.DROP);
-    setTimeout(function(){
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+    setTimeout(function() {
         marker.setAnimation(null);
     }, 3000);
-}
- // This function populates the infowindow when the marker is clicked.
-      function populateInfoWindow(marker, infowindow) {
-        console.log('this');
-        // Check to make sure the infowindow is not already opened on this marker.
-        if (infowindow.marker != marker) {
-          infowindow.marker = marker;
-          infowindow.setContent('<p><strong>'+ marker.title +'</p></strong>' + '<strong>' + "Address:" + '</strong>' + '<p><em>'+ marker.address + '<p><strong>' + "Contact: " + '</strong></p>' + '<p>' + marker.phone + '</p>' + '</em></p>' + '<p><strong>' + "Website: " + '</strong></p>' + '<a href="' + marker.url +'">'+marker.url+ '<br><p><strong>Wikipedia Article:</strong></p><br><div id="wikipedialink"></div>');
-       marker.setAnimation(google.maps.Animation.DROP);
-      infowindow.open(map, marker);
-          // Make sure the marker property is cleared if the infowindow is closed.
-          infowindow.addListener('closeclick', function() {
+}https://classroom.udacity.com/nanodegrees/nd001/parts/00113454014/modules/4fd8d440-9428-4de7-93c0-4dca17a36700/lessons/8304370457/concepts/83239598340923#
+// This function populates the infowindow when the marker is clicked.
+function populateInfoWindow(marker, infowindow) {
+    console.log('displaying infowindow');
+    // Check to make sure the infowindow is not already opened on this marker.
+    if (infowindow.marker != marker) {
+        infowindow.marker = marker;
+        infowindow.setContent('<p><strong>' + marker.title + '</p></strong>' + '<strong>' + "Address:" + '</strong>' + '<p><em>' + marker.address + '<p><strong>' + "Contact: " + '</strong></p>' + '<p>' + marker.phone + '</p>' + '</em></p>' + '<p><strong>' + "Website: " + '</strong></p>' + '<a href="' + marker.url + '">' + marker.url + '<br><p><strong>Wikipedia Article:</strong></p><br><div id="wikipedialink"></div>');
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+        infowindow.open(map, marker);
+        // Make sure the marker property is cleared if the infowindow is closed.
+        infowindow.addListener('closeclick', function() {
             infowindow.marker = null;
-          });
-           // Open infowindows at respective markers
-            infowindow.open(map, marker);
-            console.log('hi');
-        }
-      
+        });
+        // Open infowindows at respective markers
+        infowindow.open(map, marker);
+    }
 
-   //errorhandling for google maps
-      function errorHandling() {
-    alert("Issue loading google maps");
-    $('#map-canvas').html("Please try again later"); 
+
+    //errorhandling for google maps
+    function errorHandling() {
+        alert("Issue loading google maps");
+        $('#map-canvas').html("Please try again later");
+    }
+
+
+
+
+    //loading the 3rd party api Wikipedia api
+
+    //links reffered:https://www.mediawiki.org/wiki/API:Opensearch
+
+//1:1 appointment with Mr.Karol
+    var wiki_url = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
+    //ajax request to run the wikipedia api
+    $.ajax({
+        url: wiki_url,
+        dataType: "jsonp", //form of response
+    }).done(function(response) {
+        var articlename = response[0];
+        console.log(articlename);
+
+        var url = 'http://en.wikipedia.org/wiki/' + articlename;
+        console.log(url);
+        $("#wikipedialink").append('<a href="' + url + '">' + articlename + '</a>');
+
+        clearTimeout(wikiTimedout);
+    }).fail(function() { //if timeout,call for the wikipedia timeout function
+
+        wikiTimedout();
+
+    });
+
+    //error handling for wikipedia resources
+    var wikiTimedout = setTimeout(function() {
+        infowindow.setContent("Failed to load wikipedia resources");
+        infowindow.open(map, marker);
+    }, 3000);
+
 }
 
-
-
-
-//loading the 3rd party api Wikipedia api
-
-//links reffered:https://www.mediawiki.org/wiki/API:Opensearch
-
-
- var wiki_url = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
-//ajax request to run the wikipedia api
-        $.ajax({
-            url: wiki_url,
-            dataType: "jsonp",//form of response
-              }).done(function(response) {
-                var articlename = response[0];
-                console.log(articlename);
-
-                var url = 'http://en.wikipedia.org/wiki/' + articlename;
-                console.log(url);
-              $("#wikipedialink").append('<a href="' + url + '">' + articlename + '</a>');
-
-               clearTimeout(wikiTimedout);
-            }).fail(function(){//if timeout,call for the wikipedia timeout function
-
-              wikiTimedout();
-
-            });
-
-            //error handling for wikipedia resources
- var wikiTimedout = setTimeout(function() {
-            infowindow.setContent("Failed to load wikipedia resources");
-            infowindow.open(map, marker);
-        }, 3000);
-
-}
-
- function mallselect() {
-        for (var i = 0; i < markersArray.length; i++) {//creating a function to filter out malls on click of mall button
-            if(markers[i].mall === true) {
-                markers[i].setVisible(true);
-            }
-            else {
-                 markers[i].setVisible(false);
-            }
+function mallselect() {
+    for (var i = 0; i < markersArray.length; i++) { //creating a function to filter out malls on click of mall button
+        if (markers[i].mall === true) {
+            markers[i].setVisible(true);
+        } else {
+            markers[i].setVisible(false);
         }
-    };
-    function collegeselect() {//creating a function to filter out colleges on click of college button
-        for (var i = 0; i < markersArray.length; i++) {
-            if(markers[i].place === college) {
-                 markers[i].setVisible(true);
-            }
-            else {
-                 markers[i].setVisible(false);
-            }
+    }
+};
+
+function collegeselect() { //creating a function to filter out colleges on click of college button
+    for (var i = 0; i < markersArray.length; i++) {
+        if (markers[i].place === college) {
+            markers[i].setVisible(true);
+        } else {
+            markers[i].setVisible(false);
         }
-    };
-     function theatreselect() { //creating a function to filter out theatres on click of theatre button
-        for (var i = 0; i < markersArray.length; i++) {
-            if(markers[i].place === theatre) {
-               markers[i].setVisible(true);
-            }
-            else {
-               markers[i].setVisible(false);
-            }
+    }
+};
+
+function theatreselect() { //creating a function to filter out theatres on click of theatre button
+    for (var i = 0; i < markersArray.length; i++) {
+        if (markers[i].place === theatre) {
+            markers[i].setVisible(true);
+        } else {
+            markers[i].setVisible(false);
         }
-    };
-    
+    }
+};
+
 
 //ref link 1:1 appointment with Karol Sir
 //ViewModel function     
 var viewModel = function() {
     var self = this;
     self.locationList = ko.observableArray(locations);
-    this.filterIndicator = ko.observable("");
-    this.filterInfo = ko.observable(false);
+   
     this.displayFilter = ko.observable("options-box");
-     //this.locationList = ko.observableArray(markers);
+    //this.locationList = ko.observableArray(markers);
+    //seperate function to display infowindow and open the respective marker's infowindow when the place name in the list is clicked.
+    this.onclickInfowindow = function(place) {//take input from the click as place and display its marker on the map on click only.
+        google.maps.event.trigger(place.marker, 'click');
+        console.log('displaying infowindow on name click event');
+        };
 
 
 
 
+    //ref link : 1:1 appointment with Karol Sir
 
 
-
-
-
-//ref link : 1:1 appointment with Karol Sir
-    
-
-      this.filtermall = function() {   //running a function to filter out malls on click of mall button
+    this.filtermall = function() { //running a function to filter out malls on click of mall button
         var len = self.locationList().length;
         for (var i = 0; i < len; i++) {
-            if(self.locationList()[i].mall === true) {
+            if (self.locationList()[i].mall === true) {
                 self.locationList()[i].listVisible(true);
                 markers[i].setVisible(true);
-            }
-            else {
+                console.log('filter malls and display');
+            } else {
                 self.locationList()[i].listVisible(false);
                 markers[i].setVisible(false);
             }
         }
     };
-      this.filtercollege = function() {    //running a function to filter out colleges on click of college button
+    this.filtercollege = function() { //running a function to filter out colleges on click of college button
         var len = self.locationList().length;
         for (var i = 0; i < len; i++) {
-            if(self.locationList()[i].college === true) {
+            if (self.locationList()[i].college === true) {
                 self.locationList()[i].listVisible(true);
                 markers[i].setVisible(true);
-            }
-            else {
+                console.log('filter colleges and display');
+            } else {
                 self.locationList()[i].listVisible(false);
                 markers[i].setVisible(false);
             }
         }
     };
-      this.filtertheatre = function() {    //running a function to filter out theatres on click of theatre button
+    this.filtertheatre = function() { //running a function to filter out theatres on click of theatre button
         var len = self.locationList().length;
         for (var i = 0; i < len; i++) {
-            if(self.locationList()[i].theatre === true) {
+            if (self.locationList()[i].theatre === true) {
                 self.locationList()[i].listVisible(true);
-               markers[i].setVisible(true);
-            }
-            else {
+                markers[i].setVisible(true);
+                 console.log('filter theatres and display');
+            } else {
                 self.locationList()[i].listVisible(false);
-                 markers[i].setVisible(false);
+                markers[i].setVisible(false);
             }
         }
     };
-    this.nofilter = function() {    //running a function to filter out theatres on click of theatre button
+    this.nofilter = function() { //running a function to filter out theatres on click of theatre button
         var len = self.locationList().length;
         for (var i = 0; i < len; i++) {
-           {
+            {
                 self.locationList()[i].listVisible(true);
-               markers[i].setVisible(true);
+                markers[i].setVisible(true);
+                 console.log('No filters apply. Display all');
             }
-            
-        } 
+
+        }
     };
-     //this.openInfo = function(thisList) {
-       // var thisId = this.locationId();
-        //var newId = thisId.slice(-1);
-        //populateInfoWindow(markersArray[newId], infoWindow);
-   // };
+    //this.openInfo = function(thisList) {
+    // var thisId = this.locationId();
+    //var newId = thisId.slice(-1);
+    //populateInfoWindow(markersArray[newId], infoWindow);
+    // };
 };
-    ko.applyBindings(new viewModel());
+ko.applyBindings(new viewModel());
